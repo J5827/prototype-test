@@ -11,11 +11,15 @@ module Site
 
 ------------------------------------------------------------------------------
 import           Data.ByteString (ByteString)
+
 import           Snap.Core
 import           Snap.Snaplet
+import           Snap.Snaplet.Auth
+import           Snap.Snaplet.Auth.Backends.JsonFile
 import           Snap.Snaplet.Heist
+import           Snap.Snaplet.Session.Backends.CookieSession
 import           Snap.Util.FileServe
-------------------------------------------------------------------------------
+
 import           Application
 
 
@@ -42,7 +46,10 @@ routes = [ ("/", indexH)
 app :: SnapletInit App App
 app = makeSnaplet "app" "a snap web front end for the autotool" Nothing $ do
     h <- nestSnaplet "heist" heist $ heistInit "templates"
+    s <- nestSnaplet "sess" sess sessionInit
+    a <- nestSnaplet "auth" auth authInit
     addRoutes routes
-    return $ App h
-
-
+    return $ App h s a
+  where
+    sessionInit = initCookieSessionManager "site_key.txt" "sess" (Just 3600)
+    authInit    = initJsonFileAuthManager defAuthSettings sess "users.json"
