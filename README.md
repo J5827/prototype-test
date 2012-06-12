@@ -22,16 +22,17 @@ Iteration (B) - User management
 -------------------------------
     
     1. [DONE] The authentication library is integrated.
-    2. The login and registration forms are created.
+    2. [DONE] The login and registration forms are created.
        a) [DONE] Main controller routes a not authenticated user to a login page.
-       b) A login handler is created.
-       c) The login data is created.
-       d) A login form is created.
-       e) A registration form is created (linked from the login form).
-    3. The authentication is implemented.
-       a) Login data is created (for tutor and for student).
-       b) Wrong login attempt fails.
-       c) Correct login attempt succeeds.
+       b) [DONE] A login handler dummy is created.
+       c) [DONE] The login data is created.
+       d) [DONE] The login handler functionality is completed.
+       d) [DONE] A login form is created.
+       e) [DONE] A registration form is created (linked from the login form).
+    3. [DONE] The authentication is implemented.
+       a) [DONE] Login data is created (for tutor and for student).
+       b) [DONE] Wrong login attempt fails.
+       c) [DONE] Correct login attempt succeeds.
     4. The user is routed to a role specific page after login.
        a) A tutor handler is created.
        b) A tutor page is created.
@@ -91,3 +92,8 @@ Iteration (F) - Permission system
     2. number of tasks to course
     3. number of required tasks to course
     4. progress bar and status to student page
+
+Iteration (X) - Schools
+-----------------------
+
+    1. User can select a school

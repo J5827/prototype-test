@@ -22,13 +22,15 @@ import           Snap.Util.FileServe
 
 import           Application
 import           Controller.Index
+import           Controller.Register
 
 
 ------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
-routes = [ ("/", indexHandler)
-         , ("", serveDirectory "resources")
+routes = [ ("/",         indexHandler)
+         , ("/register", registrationHandler)
+         , ("",          serveDirectory "resources")
          ]
 
 
