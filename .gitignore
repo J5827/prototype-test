@@ -1,2 +1,3 @@
 dist
 .ghci
+*.swp
