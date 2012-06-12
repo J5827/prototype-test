@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Handler.Index
-    ( indexH
+module Controller.Index
+    ( indexHandler
     ) where
 
 ------------------------------------------------------------------------------
@@ -9,7 +9,7 @@ import Snap.Core
 import Snap.Snaplet.Auth
 
 import Application
-import Handler.Auth
+import Controller.Auth
 
 
 ------------------------------------------------------------------------------
@@ -18,11 +18,11 @@ import Handler.Auth
 -- The 'ifTop' is required to limit this to the top of a route.
 -- Otherwise, the way the route table is currently set up, this action
 -- would be given every request.
-indexH :: AppHandler ()
-indexH = ifTop $ requireUser auth loginH roleSwitchH
+indexHandler :: AppHandler ()
+indexHandler = ifTop $ requireUser auth loginHandler roleSwitchHandler
 
 
 ------------------------------------------------------------------------------
 -- | Route to user specific handler depending on role - tutor or student.
-roleSwitchH :: AppHandler ()
-roleSwitchH = writeText "logged in"
+roleSwitchHandler :: AppHandler ()
+roleSwitchHandler = writeText "logged in"

@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Handler.Auth
-    ( loginH
+module Controller.Auth
+    ( loginHandler
     ) where
 
 ------------------------------------------------------------------------------
@@ -11,5 +11,5 @@ import Application
 
 ------------------------------------------------------------------------------
 -- | Displays the login form. (later)
-loginH :: AppHandler ()
-loginH = writeText "login form"
+loginHandler :: AppHandler ()
+loginHandler = writeText "login form"

@@ -21,13 +21,13 @@ import           Snap.Snaplet.Session.Backends.CookieSession
 import           Snap.Util.FileServe
 
 import           Application
-import           Handler.Index
+import           Controller.Index
 
 
 ------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
-routes = [ ("/", indexH)
+routes = [ ("/", indexHandler)
          , ("", serveDirectory "resources")
          ]
 
