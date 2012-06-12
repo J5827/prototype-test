@@ -21,7 +21,7 @@ Iteration planning test
 Iteration (B) - User management
 -------------------------------
     
-    1. The authentication library is integrated.
+    1. [DONE] The authentication library is integrated.
     2. The login and registration forms are created.
        a) Main controller routes a not authenticated user to a login page.
        b) The login data is created.
