@@ -1,3 +1,4 @@
 dist
 .ghci
 *.swp
+site_key.txt

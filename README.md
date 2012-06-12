@@ -23,10 +23,11 @@ Iteration (B) - User management
     
     1. [DONE] The authentication library is integrated.
     2. The login and registration forms are created.
-       a) Main controller routes a not authenticated user to a login page.
-       b) The login data is created.
-       c) A login form is created.
-       d) A registration form is created (linked from the login form).
+       a) [DONE] Main controller routes a not authenticated user to a login page.
+       b) A login handler is created.
+       c) The login data is created.
+       d) A login form is created.
+       e) A registration form is created (linked from the login form).
     3. The authentication is implemented.
        a) Login data is created (for tutor and for student).
        b) Wrong login attempt fails.
@@ -80,7 +81,7 @@ Iteration (E) - User interface design
 -------------------------------------
 
     1. bootstrap toolkit
-    2. custom templates
+    2. bring order to the templates
     3. custom css
 
 Iteration (F) - Permission system
