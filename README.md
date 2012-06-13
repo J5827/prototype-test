@@ -18,8 +18,8 @@ Iteration planning test
        c) [DONE] The initial project state is committed to the remote repository.
 
 
-Iteration (B) - User management
--------------------------------
+[DONE] Iteration (B) - User management
+--------------------------------------
     
     1. [DONE] The authentication library is integrated.
     2. [DONE] The login and registration forms are created.
@@ -33,16 +33,16 @@ Iteration (B) - User management
        a) [DONE] Login data is created (for tutor and for student).
        b) [DONE] Wrong login attempt fails.
        c) [DONE] Correct login attempt succeeds.
-    4. The user is routed to a role specific page after login.
-       a) A tutor handler is created.
-       b) A tutor page is created.
-       e) An authenticated tutor is routed to the tutor page.
-       c) A student handler is created.
-       d) A student page is created.
-       b) A student is routed to a student 
-       e) An authenticated student is routed to the student page.
-    5. Authenticated users can logout via a link.
-
+    4. [DONE] The user is routed to a role specific page after login.
+       a) [DONE] A tutor handler is created.
+       b) [DONE] A tutor page is created.
+       e) [DONE] An authenticated tutor is routed to the tutor page.
+       c) [DONE] A student handler is created.
+       d) [DONE] A student page is created.
+       b) [DONE] A student is routed to a student 
+       e) [DONE] An authenticated student is routed to the student page.
+    5. [DONE] Authenticated users can logout via a link.
+    6. [DONE] Students are denied access to tutors page and the other way around.
 
 Iteration (C) - Course management
 ---------------------------------

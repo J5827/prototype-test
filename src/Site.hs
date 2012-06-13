@@ -21,15 +21,22 @@ import           Snap.Snaplet.Session.Backends.CookieSession
 import           Snap.Util.FileServe
 
 import           Application
+import           Controller.Auth
 import           Controller.Index
 import           Controller.Register
+import           Controller.Student
+import           Controller.Tutor
 
 
 ------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
 routes = [ ("/",         indexHandler)
+         , ("/login",    loginHandler)
+         , ("/logout",   logoutHandler)
          , ("/register", registrationHandler)
+         , ("/student",  studentHomeHandler)
+         , ("/tutor",    tutorHomeHandler)
          , ("",          serveDirectory "resources")
          ]
 
@@ -46,3 +53,28 @@ app = makeSnaplet "app" "a snap web front end for the autotool" Nothing $ do
   where
     sessionInit = initCookieSessionManager "site_key.txt" "sess" (Just 3600)
     authInit    = initJsonFileAuthManager defAuthSettings sess "users.json"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

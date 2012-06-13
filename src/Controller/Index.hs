@@ -5,11 +5,13 @@ module Controller.Index
     ) where
 
 ------------------------------------------------------------------------------
-import Snap.Core
-import Snap.Snaplet.Auth
+import           Data.Maybe (fromJust)
 
-import Application
-import Controller.Auth
+import           Snap.Core
+import           Snap.Snaplet (with)
+import           Snap.Snaplet.Auth
+
+import           Application
 
 
 ------------------------------------------------------------------------------
@@ -19,10 +21,16 @@ import Controller.Auth
 -- Otherwise, the way the route table is currently set up, this action
 -- would be given every request.
 indexHandler :: AppHandler ()
-indexHandler = ifTop $ requireUser auth loginHandler roleSwitchHandler
+indexHandler = ifTop $ requireUser auth (redirect "/login") roleSwitchHandler
 
 
 ------------------------------------------------------------------------------
 -- | Route to user specific handler depending on role - tutor or student.
 roleSwitchHandler :: AppHandler ()
-roleSwitchHandler = writeText "logged in"
+roleSwitchHandler = do
+    user <- with auth currentUser
+    redirect . mapHandler . userRoles $ fromJust user
+  where
+    mapHandler roles | Role "Student" `elem` roles = "/student"
+                     | Role "Tutor"   `elem` roles = "/tutor"
+                     | otherwise                   = "/error"

@@ -2,6 +2,7 @@
 
 module Controller.Auth
     ( loginHandler
+    , logoutHandler
     ) where
 
 ------------------------------------------------------------------------------
@@ -40,3 +41,11 @@ performLogin loginData = do
   where
     username = T.encodeUtf8 $ loginUsername loginData
     password = ClearText . T.encodeUtf8 $ loginPassword loginData
+
+
+------------------------------------------------------------------------------
+-- | Handler to perform the logout action.
+logoutHandler :: AppHandler ()
+logoutHandler = do
+    with auth logout
+    redirect "/"
