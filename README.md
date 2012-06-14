@@ -47,7 +47,7 @@ Iteration planning test
 Iteration (C) - Course management
 ---------------------------------
 
-    1. A persistent library is integrated.
+    1. [DONE] A persistent library is integrated.
     2. A tutor can create a course.
        a) The tutor can set a name.
        b) The tutor can select a semester.
