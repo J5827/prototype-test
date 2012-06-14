@@ -39,11 +39,12 @@ registrationHandler = do
 performRegistration :: RegistrationData -> AppHandler ()
 performRegistration regData = do
     password <- liftIO createRandomPassword
-    -- let password = "hvgrn3Kj"
-    user <- with auth $ createUser (regUsername regData) password
-    with auth $ saveUser $ user { userRoles = [Role "Student"] }
+    user <- with auth $ createUser userId password
+    with auth $ saveUser user { userRoles = [Role "Student"] }
     heistLocal (bindStrings $ userData password) $ render "registration-done"
+    -- writeText $ T.pack $ show user'
   where 
+    userId = regUsername regData
     userData password = [
         ("name",     regFirstname regData)
       , ("password", T.decodeUtf8 password)
