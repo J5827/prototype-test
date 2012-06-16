@@ -7,11 +7,12 @@ module Controller.Index
 ------------------------------------------------------------------------------
 import           Data.Maybe (fromJust)
 
-import           Snap.Core
-import           Snap.Snaplet (with)
-import           Snap.Snaplet.Auth
+import           Snap.Core         (ifTop, redirect)
+import           Snap.Snaplet      (with)
+import           Snap.Snaplet.Auth (Role(..), currentUser, requireUser,
+                                    userRoles)
 
-import           Application
+import           Application (AppHandler, auth)
 
 
 ------------------------------------------------------------------------------

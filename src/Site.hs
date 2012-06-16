@@ -1,4 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
 
 ------------------------------------------------------------------------------
 -- | This module is where all the routes and handlers are defined for your
@@ -11,40 +13,41 @@ module Site
 
 ------------------------------------------------------------------------------
 import           Data.ByteString (ByteString)
+import qualified Data.ByteString.Char8 as BS
+import           Data.Map ((!))
+import           Data.Maybe (fromMaybe)
 
 import           Database.HDBC.Sqlite3
+import           Snap (get)
 import           Snap.Core
 import           Snap.Snaplet
 import           Snap.Snaplet.Auth
--- import           Snap.Snaplet.Auth.Backends.Hdbc
 import           Snap.Snaplet.Auth.Backends.JsonFile
 import           Snap.Snaplet.Heist
 import           Snap.Snaplet.Hdbc
 import           Snap.Snaplet.Session.Backends.CookieSession
 import           Snap.Util.FileServe
 
-import           Application
-import           Controller.Auth
-import           Controller.Index
-import           Controller.Register
-import           Controller.Student
-import           Controller.Tutor
+import           Application         (App(App), heist, sess, auth, db)
+import           Controller.Auth     (loginHandler, logoutHandler)
+import           Controller.Course   (createCourseHandler)
+import           Controller.Index    (indexHandler)
+import           Controller.Register (registrationHandler)
+import           Controller.Student  (studentHomeHandler)
+import           Controller.Tutor    (tutorHomeHandler)
 
 
 ------------------------------------------------------------------------------
 -- | The application's routes.
 routes :: [(ByteString, Handler App App ())]
-routes = [ ("/",         indexHandler)
-         , ("/login",    loginHandler)
-         , ("/logout",   logoutHandler)
-         , ("/register", registrationHandler)
-         , ("/student",  studentHomeHandler)
-         , ("/tutor",    tutorHomeHandler)
-         
-           -- tutorial
-         , ("/some/:num", someNumHandler)
-
-         , ("",          serveDirectory "resources")
+routes = [ ("/",              indexHandler)
+         , ("/course/create", createCourseHandler)
+         , ("/login",         loginHandler)
+         , ("/logout",        logoutHandler)
+         , ("/register",      registrationHandler)
+         , ("/student",       studentHomeHandler)
+         , ("/tutor",         tutorHomeHandler)
+         , ("",               serveDirectory "resources")
          ]
 
 
@@ -61,6 +64,11 @@ app = makeSnaplet "app" "a snap web front end for the autotool" Nothing $ do
   where
     sessionInit  = initCookieSessionManager "site_key.txt" "sess" (Just 3600)
     jsonAuthInit = initJsonFileAuthManager defAuthSettings sess "users.json"
-    -- hdbcAuthInit = initHdbcAuthManager defAuthSettings sess sqli defAuthTable
-                                       -- defQueries
     sqli         = connectSqlite3 "resources/client.db"
+
+
+------------------------------------------------------------------------------
+putMessage :: HasHdbc m c s => ByteString -> ByteString -> m ()
+putMessage id msg = do
+    result <- query' "INSERT INTO messages VALUES(?, ?)" [toSql id, toSql msg]
+    return ()

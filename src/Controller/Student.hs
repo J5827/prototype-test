@@ -10,16 +10,10 @@ import           Snap.Snaplet.Auth
 import           Snap.Snaplet.Heist (render)
 
 import           Application
-import           Util.Auth (withAuth)
+import           Util.Auth (withStudent)
 
 
 ------------------------------------------------------------------------------
 -- | Renders the student area.
 studentHomeHandler :: AppHandler ()
 studentHomeHandler = withStudent $ render "student/index"
-
-
-------------------------------------------------------------------------------
--- | Allow only students the access to the handler.
-withStudent :: AppHandler () -> AppHandler ()
-withStudent = withAuth $ Role "Student"

@@ -56,6 +56,8 @@ validLogin loginData = do
     password = ClearText . T.encodeUtf8 $ loginPassword loginData
 
 
+------------------------------------------------------------------------------
+-- | Some form error messages.
 usernameEmptyMsg = "bitte Matrikelnummer eingeben" 
 passwordEmptyMsg = "bitte Passwort eingeben" 
 invalidLoginMsg  = "falsches Passwort"

@@ -1,17 +1,42 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Util.Auth
-    ( withAuth
+    ( getUserId
+    , withTutor
+    , withStudent
     ) where
 
 ------------------------------------------------------------------------------
 import           Data.Maybe (fromJust, isJust)
+import qualified Data.Text as T
 
+import           Snap ((<$>))
 import           Snap.Core
 import           Snap.Snaplet (with)
 import           Snap.Snaplet.Auth
 
 import           Application
+
+
+------------------------------------------------------------------------------
+-- | Unwraps the userId record field of the currently logged in user. Uses the
+-- unsafe fromJust, so it need to be called after a user check (e.g. withAuth)
+-- has already performed.
+getUserId :: AppHandler String
+getUserId = do
+    user <- fromJust <$> with auth currentUser
+    return . T.unpack . unUid . fromJust $ userId user
+
+------------------------------------------------------------------------------
+-- | Allow only tutors the access to the handler.
+withTutor :: AppHandler () -> AppHandler ()
+withTutor = withAuth $ Role "Tutor"
+
+
+------------------------------------------------------------------------------
+-- | Allow only students the access to the handler.
+withStudent :: AppHandler () -> AppHandler ()
+withStudent = withAuth $ Role "Student"
 
 
 ------------------------------------------------------------------------------

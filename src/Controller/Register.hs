@@ -1,28 +1,30 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+------------------------------------------------------------------------------
+-- | Controller to handle user registration.
 module Controller.Register
     ( registrationHandler
     ) where
 
-import           Data.Text (Text)
-import qualified Data.Text as T
-import qualified Data.Text.Encoding as T
+------------------------------------------------------------------------------
+import           Data.Text             (Text)
+import qualified Data.Text             as T
+import qualified Data.Text.Encoding    as T
 import qualified Data.ByteString.Char8 as BS
 
-import           Snap
-import           Snap.Snaplet
-import           Snap.Snaplet.Auth
-import           Snap.Snaplet.Heist
-import           Text.Digestive.Heist
-import           Text.Digestive.Snap
-import           Text.Digestive.View
-import           Text.Templating.Heist
+import           Snap                  (liftIO)
+import           Snap.Snaplet          (with)
+import           Snap.Snaplet.Auth     (AuthUser(..), Role(..), createUser,
+                                        saveUser)
+import           Snap.Snaplet.Heist    (heistLocal, render)
+import           Text.Digestive.Snap   (runForm)
+import           Text.Templating.Heist (bindStrings)
 
-import           Application
-import           Form.Login
-import           Form.Registration
-import           Util.Form
-import           Util.PasswordGenerator
+import           Application            (AppHandler, auth)
+import           Form.Registration      (RegistrationData(..),
+                                         registrationForm)
+import           Util.Form              (showForm)
+import           Util.PasswordGenerator (createRandomPassword)
 
 
 ------------------------------------------------------------------------------

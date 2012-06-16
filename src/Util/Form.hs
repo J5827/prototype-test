@@ -21,7 +21,7 @@ showForm :: String -> View Text -> AppHandler ()
 showForm name view =
     heistLocal (bindDigestiveSplices view) $ render template
   where
-    template = BS.pack $ "forms/" ++ name ++ "-form"
+    template = BS.pack $ "forms/" ++ name
 
 ------------------------------------------------------------------------------
 -- | Check whether a text has the length zero or not.
