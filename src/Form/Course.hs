@@ -11,7 +11,7 @@ module Form.Course
 import           Data.Text (Text)
 
 import           Snap           ((<$>), (<*>))
-import           Text.Digestive (Form, (.:), bool, check, text)
+import           Text.Digestive (Form, (.:), check, text)
 
 import           Application (AppHandler)
 import           Util.Form   (notEmpty)
@@ -34,5 +34,6 @@ courseForm = CourseData
 
 
 ------------------------------------------------------------------------------
--- | Some form error messages.
+-- | Error message.
+coursenameEmptyMsg :: Text
 coursenameEmptyMsg = "bitte Kursnamen eingeben" 

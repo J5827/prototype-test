@@ -1,16 +1,16 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+------------------------------------------------------------------------------
+-- | Student controller to handle student functionalities.
 module Controller.Student
     ( studentHomeHandler
     ) where
 
 ------------------------------------------------------------------------------
-import           Snap.Core
-import           Snap.Snaplet.Auth
 import           Snap.Snaplet.Heist (render)
 
-import           Application
-import           Util.Auth (withStudent)
+import           Application (AppHandler)
+import           Util.Auth   (withStudent)
 
 
 ------------------------------------------------------------------------------

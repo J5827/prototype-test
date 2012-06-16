@@ -1,5 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+------------------------------------------------------------------------------
+-- | Controller for the application home page. Switches automatically to a
+-- login form in case the user is not authenticated.
 module Controller.Index
     ( indexHandler
     ) where

@@ -1,17 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+------------------------------------------------------------------------------
+-- | Controller to handle the tutor dashboard page.
 module Controller.Tutor
     ( tutorHomeHandler
     ) where
 
 ------------------------------------------------------------------------------
-import           Data.ByteString       (ByteString)
-import qualified Data.ByteString.Char8 as BS
-import           Data.Maybe            (fromJust)
-import           Data.Text             (Text)
-import qualified Data.Text             as T
+import qualified Data.Text as T
 
-import           Snap                  ((<$>))
 import           Snap.Snaplet.Heist    (heistLocal,render)
 import           Text.Templating.Heist (Splice, bindSplices, mapSplices,
                                         runChildrenWithText)

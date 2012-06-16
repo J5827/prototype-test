@@ -7,17 +7,14 @@ module Form.Login
   , loginForm
   ) where
 
+------------------------------------------------------------------------------
 import           Data.Maybe
 import           Data.Text (Text)
-import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 
 import           Snap
 import           Snap.Snaplet.Auth
-import           Snap.Snaplet.Auth.Backends.JsonFile
 import           Text.Digestive
-import           Text.Digestive.Heist
-import           Text.Digestive.Snap
 
 import           Application
 import           Util.Form
@@ -57,7 +54,18 @@ validLogin loginData = do
 
 
 ------------------------------------------------------------------------------
--- | Some form error messages.
+-- | Error message.
+usernameEmptyMsg :: Text
 usernameEmptyMsg = "bitte Matrikelnummer eingeben" 
+
+
+------------------------------------------------------------------------------
+-- | Error message.
+passwordEmptyMsg :: Text
 passwordEmptyMsg = "bitte Passwort eingeben" 
+
+
+------------------------------------------------------------------------------
+-- | Error message.
+invalidLoginMsg :: Text
 invalidLoginMsg  = "falsches Passwort"

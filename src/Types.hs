@@ -5,6 +5,11 @@ module Types
   ( ScoringOrder(..)
   ) where
 
+
+------------------------------------------------------------------------------
+-- | Data type to represent the scoring order of tasks in a highscore list.
+-- Increasing means a lower score is better, decreasing a higher score is
+-- better.
 data ScoringOrder = Increasing
                   | None
                   | Decreasing

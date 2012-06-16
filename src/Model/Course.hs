@@ -30,11 +30,11 @@ import           Util.ORM      (addRelation, createRecord, getLastInsertRowId,
 -- may also have number of tasks and a number of required task in order to
 -- realize the permission (assessment) system.
 data Course = Course
-    { courseId   :: Int
-    , courseName :: String
-    , capacity   :: Int        -- ^ max number of students
-    , students   :: [Student]  -- ^ all enroled students 
-    , tasks      :: [Task]     -- ^ from tutor assigned tasks
+    { courseId       :: Int
+    , courseName     :: String
+    , courseCapacity :: Int        -- ^ max number of students
+    , courseStudents :: [Student]  -- ^ all enroled students 
+    , courseTasks    :: [Task]     -- ^ from tutor assigned tasks
     } deriving (Show) -- FIXME remove
 
 
@@ -72,12 +72,7 @@ createCourse name capacity uid = do
     result1 <- createRecord "course" ["courseName", "capacity"]
                                      [show name, show capacity]
     if result1 > 0
-      then do courseId <- getLastInsertRowId "course"
-              result2  <- addRelation "tutor" uid "courses" (show courseId)
+      then do cid     <- getLastInsertRowId "course"
+              result2 <- addRelation "tutor" uid "courses" (show cid)
               return (result2 > 0)
       else return False
-
-
-------------------------------------------------------------------------------
--- | Some error messages.
-courseCreateErrorMsg = "Fehler: Der Kurs konnte nicht erstellt werden."

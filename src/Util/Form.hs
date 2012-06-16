@@ -1,3 +1,6 @@
+------------------------------------------------------------------------------
+-- | Form helper library containing several functions for verification or form
+-- creation.
 module Util.Form
     ( showForm
     , notEmpty
@@ -14,6 +17,7 @@ import           Text.Digestive.View
 
 import           Application
 
+
 ------------------------------------------------------------------------------
 -- | Bind the elements from the digestive form to the corresponding view
 -- template.
@@ -22,6 +26,7 @@ showForm name view =
     heistLocal (bindDigestiveSplices view) $ render template
   where
     template = BS.pack $ "forms/" ++ name
+
 
 ------------------------------------------------------------------------------
 -- | Check whether a text has the length zero or not.

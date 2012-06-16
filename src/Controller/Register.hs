@@ -7,10 +7,7 @@ module Controller.Register
     ) where
 
 ------------------------------------------------------------------------------
-import           Data.Text             (Text)
-import qualified Data.Text             as T
-import qualified Data.Text.Encoding    as T
-import qualified Data.ByteString.Char8 as BS
+import qualified Data.Text.Encoding as T
 
 import           Snap                  (liftIO)
 import           Snap.Snaplet          (with)
@@ -41,12 +38,12 @@ registrationHandler = do
 performRegistration :: RegistrationData -> AppHandler ()
 performRegistration regData = do
     password <- liftIO createRandomPassword
-    user <- with auth $ createUser userId password
+    user <- with auth $ createUser uid password
     with auth $ saveUser user { userRoles = [Role "Student"] }
     heistLocal (bindStrings $ userData password) $ render "registration-done"
     -- writeText $ T.pack $ show user'
   where 
-    userId = regUsername regData
+    uid = regUsername regData
     userData password = [
         ("name",     regFirstname regData)
       , ("password", T.decodeUtf8 password)

@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+------------------------------------------------------------------------------
+-- | Controller for creating new courses.
 module Controller.Course
     ( createCourseHandler
     ) where

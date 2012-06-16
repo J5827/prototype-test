@@ -57,3 +57,29 @@ Executable prototype-test
       ghc-options: -threaded -Wall -fwarn-tabs -funbox-strict-fields -O2
                    -fno-warn-orphans
 
+Library
+  Hs-Source-Dirs: src
+
+  -- Modules exported by the library.
+  Exposed-modules:
+    Application,
+    Controller.Auth,
+    Controller.Course,
+    Controller.Index,
+    Controller.Register,
+    Controller.Student,
+    Controller.Tutor,
+    Form.Course,
+    Form.Login,
+    Form.Registration,
+    Model.Course,
+    Model.Solution,
+    Model.Student,
+    Model.Task,
+    Model.Tutor,
+    Site,
+    Types,
+    Util.Auth,
+    Util.Form,
+    Util.ORM,
+    Util.PasswordGenerator

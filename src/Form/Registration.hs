@@ -7,15 +7,13 @@ module Form.Registration
   , registrationForm
   ) where
 
-import           Data.Maybe
-import           Data.Text
+------------------------------------------------------------------------------
+import           Data.Text (Text)
 import qualified Data.Text as T
 
 import           Snap
 import           Snap.Snaplet.Auth
 import           Text.Digestive
-import           Text.Digestive.Heist
-import           Text.Digestive.Snap
 import qualified Text.Email.Validate as E
 
 import           Application
@@ -62,8 +60,27 @@ validEmail :: Text -> Bool
 validEmail = E.isValid . T.unpack
 
 
+-----------------------------------------------------------------------------
+-- | Error message.
+usernameInUseMsg :: Text
 usernameInUseMsg  = "Matrikelnummer bereits registriert"
-usernameEmptyMsg  = "bitte Matrikelnummer eingeben" 
+
+-----------------------------------------------------------------------------
+-- | Error message.
+usernameEmptyMsg :: Text
+usernameEmptyMsg = "bitte Matrikelnummer eingeben" 
+
+-----------------------------------------------------------------------------
+-- | Error message.
+firstnameEmptyMsg :: Text
 firstnameEmptyMsg = "bitte Vornamen eingeben" 
-lastnameEmptyMsg  = "bitte Nachnamen eingeben" 
-emailInvalidMsg   = "keine gültige E-Mail-Adresse"
+
+-----------------------------------------------------------------------------
+-- | Error message.
+lastnameEmptyMsg :: Text
+lastnameEmptyMsg = "bitte Nachnamen eingeben" 
+
+-----------------------------------------------------------------------------
+-- | Error message.
+emailInvalidMsg :: Text
+emailInvalidMsg = "keine gültige E-Mail-Adresse"

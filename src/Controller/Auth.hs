@@ -8,9 +8,7 @@ module Controller.Auth
     ) where
 
 ------------------------------------------------------------------------------
-import qualified Data.ByteString.Char8 as BS
-import qualified Data.Text.Encoding    as T
-import           Data.Text             (Text)
+import qualified Data.Text.Encoding as T
 
 import           Snap.Core           (redirect)
 import           Snap.Snaplet        (with)

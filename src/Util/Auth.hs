@@ -1,5 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+------------------------------------------------------------------------------
+-- | Auth helper library to provide functions such as authentication guards or
+-- to get the id from the current logged in user.
 module Util.Auth
     ( getUserId
     , withTutor
@@ -8,11 +11,11 @@ module Util.Auth
 
 ------------------------------------------------------------------------------
 import           Data.Maybe (fromJust, isJust)
-import qualified Data.Text as T
+import qualified Data.Text  as T
 
-import           Snap ((<$>))
+import           Snap              ((<$>))
 import           Snap.Core
-import           Snap.Snaplet (with)
+import           Snap.Snaplet      (with)
 import           Snap.Snaplet.Auth
 
 import           Application

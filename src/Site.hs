@@ -13,13 +13,8 @@ module Site
 
 ------------------------------------------------------------------------------
 import           Data.ByteString (ByteString)
-import qualified Data.ByteString.Char8 as BS
-import           Data.Map ((!))
-import           Data.Maybe (fromMaybe)
 
 import           Database.HDBC.Sqlite3
-import           Snap (get)
-import           Snap.Core
 import           Snap.Snaplet
 import           Snap.Snaplet.Auth
 import           Snap.Snaplet.Auth.Backends.JsonFile
@@ -65,10 +60,3 @@ app = makeSnaplet "app" "a snap web front end for the autotool" Nothing $ do
     sessionInit  = initCookieSessionManager "site_key.txt" "sess" (Just 3600)
     jsonAuthInit = initJsonFileAuthManager defAuthSettings sess "users.json"
     sqli         = connectSqlite3 "resources/client.db"
-
-
-------------------------------------------------------------------------------
-putMessage :: HasHdbc m c s => ByteString -> ByteString -> m ()
-putMessage id msg = do
-    result <- query' "INSERT INTO messages VALUES(?, ?)" [toSql id, toSql msg]
-    return ()

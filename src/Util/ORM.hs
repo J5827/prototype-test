@@ -6,8 +6,10 @@
 --
 -- * every table has to have an id (INTEGER) column which is named after the
 --   table, e.g. table 'user' and id column 'userId'
+--
 -- * the column with the foreign keys is named like the foreign table plus an
 --   's', e.g. the foreign column 'messages' refers to the table 'message'
+--
 -- * the foreign keys are given as list of numbers as a string value, e.g.
 --   '1,2,3'
 --
@@ -20,10 +22,9 @@ module Util.ORM
     ) where
 
 ------------------------------------------------------------------------------
-import           Data.List (intersperse)
+import           Data.List (intercalate)
 import           Data.Map ((!))
 
-import           Database.HDBC.Sqlite3
 import           Snap.Snaplet.Hdbc
 
 
@@ -55,10 +56,8 @@ createRecord table columns values =
     query' queryString []
   where
     queryString = "INSERT INTO " ++
-                    table ++ "(" ++ convert columns ++ ")" ++
-                  "VALUES(" ++ convert values ++ ")"
-    convert = concat . intersperse ", "
-
+                    table ++ "(" ++ intercalate ", " columns ++ ")" ++
+                  "VALUES(" ++ intercalate ", " values ++ ")"
 
 
 ------------------------------------------------------------------------------
@@ -69,7 +68,7 @@ updateRecord :: HasHdbc m c s
              -> String
              -> String
              -> m Integer
-updateRecord table idValue column newValue = do
+updateRecord table idValue column newValue =
     query' queryString []
   where
     queryString = "UPDATE " ++ table ++
