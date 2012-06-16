@@ -44,17 +44,18 @@ Iteration planning test
     5. [DONE] Authenticated users can logout via a link.
     6. [DONE] Students are denied access to tutors page and the other way around.
 
+
 Iteration (C) - Course management
 ---------------------------------
 
     1. [DONE] A persistent library is integrated.
-    2. A tutor can create a course.
-       a) The tutor can set a name.
-       b) The tutor can select a semester.
-       c) The tutor can set a cource capacity.
-       d) The tutor can save the course into the persistent store.
-    2. A tutor can see a list of his courses.
-       a) On the tutor page a list of courses he created is visible.
+    2. [DONE] A tutor can create a course.
+       a) [DONE] The tutor can set a name.
+       b) [NO] The tutor can select a semester.
+       c) [DONE] The tutor can set a cource capacity.
+       d) [DONE] The tutor can save the course into the persistent store.
+    2. [DONE] A tutor can see a list of his courses.
+       a) [DONE] On the tutor page a list of courses he created is visible.
     3. A student must be able to see a list of courses.
        a) On the student page a list of all courses at the school is visible.
     4. A student can enrol in a course.
@@ -72,11 +73,12 @@ Iteration (D) - Task management
        c) Config
        d) Verification
        e) Save
-    2. A tutor can see a list of tasks he created.
-       a) tutor page ...
+    2. [DONE] A tutor can see a list of tasks he created.
+       a) [DONE] tutor page ...
     3. A tutor can assign a configured task to a course
        a) ...
     4. A student can see tasks that are assigned to h
+
 
 Iteration (E) - User interface design
 -------------------------------------
@@ -85,6 +87,7 @@ Iteration (E) - User interface design
     2. bring order to the templates
     3. custom css
 
+
 Iteration (F) - Permission system
 ---------------------------------
 
@@ -92,6 +95,7 @@ Iteration (F) - Permission system
     2. number of tasks to course
     3. number of required tasks to course
     4. progress bar and status to student page
+
 
 Iteration (X) - Schools
 -----------------------
